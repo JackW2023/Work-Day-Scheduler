@@ -8,7 +8,7 @@ $(function () {
   const timeDiv = document.querySelector(".container-lg");
   for(let i = 0; i < hoursArray.length; i++) {
     const hoursDiv = document.createElement("div")
-    hoursDiv.classList.add("row","time-block")
+    hoursDiv.classList.add("row","time-block", tracker(hoursArray[i]))
     hoursDiv.innerHTML = `<div class="col-2 col-md-1 hour text-center py-3">${timeLoop(hoursArray[i])}</div>
     <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
     <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -49,6 +49,20 @@ $(function () {
     year: "numeric"
 
   })
+
+
+  function tracker(hour) {
+    // const currentHour = new Date().getHours()
+    const currentHour = 12 
+    if (currentHour === hour) {
+      return "present";
+  
+    } else if (currentHour > hour) {
+      return "past"
+    } else {
+      return "future"
+    }
+  }
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
